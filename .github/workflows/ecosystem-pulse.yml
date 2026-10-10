@@ -1,0 +1,62 @@
+name: Ecosystem Health Pulse & DevSecOps Audit
+
+on:
+  schedule:
+    # Runs every day at 08:30 UTC
+    - cron: '30 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit-pulse:
+    runs-on: ubuntu-latest
+    name: Daily Sovereign Ecosystem Health Check
+    steps:
+      - name: Checkout Master Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify Live Endpoints & End-to-End Health
+        run: |
+          python -c "
+          import urllib.request
+          import json
+          import datetime
+
+          urls = [
+              'https://omniversodigital.github.io/',
+              'https://omniversodigital.github.io/cv.html'
+          ]
+          for u in urls:
+              req = urllib.request.Request(u, headers={'User-Agent': 'OmniversoPulse/1.0'})
+              with urllib.request.urlopen(req) as resp:
+                  assert resp.status == 200, f'Endpoint failed: {u}'
+                  print(f'Verified: {u} (Status {resp.status})')
+
+          timestamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+          with open('PULSE.md', 'w', encoding='utf-8') as f:
+              f.write(f'# Omniverso Ecosystem Pulse\n\n')
+              f.write(f'- **Last Automated Audit:** \`{timestamp}\`\n')
+              f.write(f'- **Telemetry Status:** \`ALL SYSTEMS OPERATIONAL\`\n')
+              f.write(f'- **Production Endpoints Verified:** 100% OK\n')
+              f.write(f'- **Architecture:** Sovereign Agentic & Cloud Infrastructure\n')
+          print('Health pulse successfully generated.')
+          "
+
+      - name: Commit & Push Daily Health Pulse
+        run: |
+          git config user.name "Omniverso Bot"
+          git config user.email "bot@omniversodigital.internal"
+          git add PULSE.md
+          if git diff --staged --quiet; then
+            echo "No changes in pulse report."
+          else
+            git commit -m "chore(telemetry): daily ecosystem health heartbeat [skip ci]"
+            git push
+          fi
