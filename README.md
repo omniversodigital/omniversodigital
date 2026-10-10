@@ -96,6 +96,7 @@ flowchart TD
 | [**`finance-harness`**](https://github.com/omniversodigital/finance-harness) | Quantitative finance evaluation and DCF valuation harness for LLMs | Python · UV · Financial Ratios · Statistical Modeling | [![Finance](https://img.shields.io/badge/Quant-DCF_Models-FFD600?style=flat-square)](https://github.com/omniversodigital/finance-harness) |
 | [**`godmode-ai`**](https://github.com/omniversodigital/godmode-ai) | Autonomous AI red-teaming and jailbreak vulnerability evaluation | Next.js 14 · React 19 · TypeScript · TailwindCSS | [![Security](https://img.shields.io/badge/Red--Team-Active-D50000?style=flat-square)](https://github.com/omniversodigital/godmode-ai) |
 | [**`crypto-dashboard`**](https://github.com/omniversodigital/crypto-dashboard) | High-performance institutional crypto portfolio analytics | React 19 · Vite · TypeScript · Tailwind · Lucide | [![Frontend](https://img.shields.io/badge/UI-60FPS-00B0FF?style=flat-square)](https://github.com/omniversodigital/crypto-dashboard) |
+| [**`nexus-research-suite`**](https://github.com/omniversodigital/nexus-research-suite) | Unified multimodal reasoning, biomedical knowledge graphs & privacy evals | Python 3.12 · PyTest · Know2BIO · LogicVista · PrivacyMind | [![Research](https://img.shields.io/badge/Research-Multimodal_Evals-8E24AA?style=flat-square)](https://github.com/omniversodigital/nexus-research-suite) |
 
 ---
 
